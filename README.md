@@ -1,6 +1,6 @@
 # TAASS_2026
-<!-- English version ->
-<!-- Italian version below ->
+# English version
+## Italian version below
 This repository contains our TAASS project, based on the same course of study offered by the University of Turin.
 Starting with a business idea, the goal is to develop an application based on a microservices-oriented architecture.
 
@@ -10,7 +10,7 @@ The coordinated management of these activities requires constant information sha
 MyAmbu aims to address this need through an integrated management system designed to centralize information and support the coordination of organizational processes, thereby promoting a more efficient, structured, and traceable management of activities related to medical transport.
 
 
-<!-- Italian version ->
+# Italian version
 Questo repository contiene il nostro progetto di TAASS, basato sul medesimo corso di studi dell'Univeristà di Torino.
 Partendo da un idea di business, l'obiettivo è quello di realizzare un'applicazione basata su un architettura orientata ai microservizi.
 
