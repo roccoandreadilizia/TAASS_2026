@@ -1,0 +1,1614 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>20</x>
+      <y>10</y>
+      <w>1250</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>*MyAmbu | Tactical Domain-Driven Design*
+fg=#314359
+fontsize=25
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>20</x>
+      <y>60</y>
+      <w>1250</w>
+      <h>31</h>
+    </coordinates>
+    <panel_attributes>*Modello di dominio dei trasporti sanitari*
+fg=#314359
+fontsize=13
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>20</x>
+      <y>110</y>
+      <w>650</w>
+      <h>620</h>
+    </coordinates>
+    <panel_attributes>*Richieste*
+--
+fg=#713FA0
+bg=#F4F0FC
+layer=-1</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>700</x>
+      <y>110</y>
+      <w>1400</w>
+      <h>620</h>
+    </coordinates>
+    <panel_attributes>*Trasporto*
+--
+fg=#204E86
+bg=#EAF3FD
+layer=-1</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>20</x>
+      <y>940</y>
+      <w>910</w>
+      <h>850</h>
+    </coordinates>
+    <panel_attributes>*Mezzi*
+--
+fg=#216A57
+bg=#ECF7F3
+layer=-1</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>960</x>
+      <y>940</y>
+      <w>890</w>
+      <h>850</h>
+    </coordinates>
+    <panel_attributes>*Personale*
+--
+fg=#855612
+bg=#FDF5E7
+layer=-1</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>1880</x>
+      <y>940</y>
+      <w>910</w>
+      <h>850</h>
+    </coordinates>
+    <panel_attributes>*Amministrazione*
+--
+fg=#8D3D58
+bg=#FBEFF3
+layer=-1</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>50</x>
+      <y>180</y>
+      <w>285</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>«aggregate root»
+*RichiestaTrasporto*
+--
+richiestaId: RichiestaId
+richiedenteId: RichiedenteId
+pazienteId: PazienteId
+convenzioneId: ConvenzioneId [0..1]
+dettagli: DatiRichiesta
+stato: StatoRichiesta
+--
+ricevi()
+approva(centralinistaId)
+rifiuta(centralinistaId, motivo)
+fg=#713FA0
+bg=#E9DCF9
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>410</x>
+      <y>180</y>
+      <w>230</w>
+      <h>155</h>
+    </coordinates>
+    <panel_attributes>«aggregate root»
+*Richiedente*
+--
+richiedenteId: RichiedenteId
+tipo: Privato o Struttura
+recapito: Contatto
+strutturaId: StrutturaId [0..1]
+--
+aggiornaRecapito()
+fg=#713FA0
+bg=#E9DCF9
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>50</x>
+      <y>450</y>
+      <w>285</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>«value object»
+*DatiRichiesta*
+--
+canale: Telefonico o Telematico
+prelievo, destinazione: Luogo
+fasciaRichiesta: Intervallo
+tipoMezzo: Base o Avanzato
+presidiRichiesti: TipoPresidio [0..*]
+note: Testo
+fg=#713FA0
+bg=#FFFFFF
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>390</x>
+      <y>450</y>
+      <w>250</w>
+      <h>152</h>
+    </coordinates>
+    <panel_attributes>«repository»
+*RichiesteTrasporto*
+--
+perId(richiestaId)
+daEsaminare()
+salva(richiesta)
+fg=#713FA0
+bg=#FFFFFF
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>50</x>
+      <y>643</y>
+      <w>590</w>
+      <h>65</h>
+    </coordinates>
+    <panel_attributes>*Esito della richiesta*
+Ricevuta → Approvata o Rifiutata. Il richiedente riceve l’esito.
+Solo l’approvazione avvia la pianificazione del trasporto.
+fg=#713FA0
+bg=#F4F0FC
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1190</x>
+      <y>180</y>
+      <w>365</w>
+      <h>226</h>
+    </coordinates>
+    <panel_attributes>«aggregate root»
+*Trasporto*
+--
+trasportoId: TrasportoId
+richiestaId: RichiestaId
+pazienteId: PazienteId
+convenzioneId: ConvenzioneId [0..1]
+scheda: SchedaTrasporto
+assegnazione: Assegnazione [0..1]
+stato: StatoTrasporto
+--
+pianifica() / assegna() / riassegna()
+prendiInCarico(soccorritoreId)
+avanza(stato, istante) / registraVariazione()
+completa(esito)
+fg=#204E86
+bg=#DCEBFA
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>730</x>
+      <y>180</y>
+      <w>250</w>
+      <h>142</h>
+    </coordinates>
+    <panel_attributes>«aggregate root»
+*Paziente*
+--
+pazienteId: PazienteId
+anagrafica: DatiAnagrafici
+--
+registra() / aggiornaAnagrafica()
+fg=#204E86
+bg=#DCEBFA
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>730</x>
+      <y>430</y>
+      <w>250</w>
+      <h>172</h>
+    </coordinates>
+    <panel_attributes>«repository»
+*Trasporti*
+--
+perId(trasportoId)
+perRichiesta(richiestaId)
+perPaziente(pazienteId)
+perEquipaggio(soccorritoreId, fascia)
+impegniRisorse(fascia)
+salva(trasporto)
+fg=#204E86
+bg=#FFFFFF
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1740</x>
+      <y>180</y>
+      <w>330</w>
+      <h>175</h>
+    </coordinates>
+    <panel_attributes>«domain service»
+*AllocazioneRisorse*
+--
+suggerisciRisorse(fascia, requisiti)
+verificaERegistraImpegno(assegnazione)
+valutaRiassegnazione(mezzoId)
+--
+Consulta Mezzi, Personale e impegni correnti.
+fg=#204E86
+bg=#FFFFFF
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1060</x>
+      <y>470</y>
+      <w>275</w>
+      <h>155</h>
+    </coordinates>
+    <panel_attributes>«value object»
+*SchedaTrasporto*
+--
+prelievo, destinazione: Luogo
+fasciaPianificata: Intervallo
+requisiti: RequisitiTrasporto
+sosta: Durata [0..1]
+note: Testo
+fg=#204E86
+bg=#FFFFFF
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1410</x>
+      <y>470</y>
+      <w>270</w>
+      <h>155</h>
+    </coordinates>
+    <panel_attributes>«value object»
+*Assegnazione*
+--
+mezzoId: MezzoId
+turnoId: TurnoId
+equipaggio: SoccorritoreId [1..*]
+fasciaImpegno: Intervallo
+fg=#204E86
+bg=#FFFFFF
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1740</x>
+      <y>470</y>
+      <w>330</w>
+      <h>155</h>
+    </coordinates>
+    <panel_attributes>«value object»
+*EsitoTrasporto*
+--
+consegnaPaziente: Istante
+chilometri: Km
+impegnativa: RiferimentoDocumento [0..1]
+incassoRilevato: Importo [0..1]
+riferimentiDocumenti: DocumentoId [0..*]
+fg=#204E86
+bg=#FFFFFF
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>730</x>
+      <y>643</y>
+      <w>1340</w>
+      <h>65</h>
+    </coordinates>
+    <panel_attributes>*Ciclo del trasporto e assegnazione*
+Pianificato → Assegnato → Preso in carico → Verso il prelievo → Al prelievo → Paziente a bordo → Verso la destinazione → Completato.
+Un trasporto per richiesta approvata. Per assegnare servono mezzo idoneo, turno coperto e operatori abilitati, senza sovrapposizioni.
+fg=#204E86
+bg=#EAF3FD
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>2140</x>
+      <y>130</y>
+      <w>645</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>*Come leggere il diagramma*
+«aggregate root» • governa le modifiche al proprio aggregato
+«entity» • oggetto identificabile all’interno dell’aggregato
+«value object» • valore immutabile definito dai suoi attributi
+«domain service» • regola che coinvolge più oggetti del dominio
+«repository» • recupera e salva le radici degli aggregati
+Diamante pieno • composizione   |   Freccia tratteggiata • dipendenza
+Tra contesti si scambiano identificativi e dati dei contratti qui sotto.
+fg=#314359
+fontsize=14
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>2140</x>
+      <y>320</y>
+      <w>640</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>*Decisioni di modellazione*
+Il DOCX elenca Richieste come contesto dedicato. L’approvazione apre Trasporto.
+SchedaTrasporto conserva i dati operativi e Trasporto governa stato e assegnazione.
+Il soccorritore agisce in più contesti. Personale ne gestisce l’anagrafica.
+Trasporto registra l’incasso dichiarato e Amministrazione lo riconcilia.
+Cardinalità, transizioni e contratti sono proposte derivate dai processi.
+fg=#314359
+bg=#F2F5F8
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>2140</x>
+      <y>500</y>
+      <w>640</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>*Documenti di riferimento*
+idee-shared-taass-2627.docx  •  stream, requisiti, CRC e bounded context
+MyAmbu - PR1.pdf  •  value stream, CRC e linguaggio di dominio
+fg=#314359
+fontsize=14
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>20</x>
+      <y>755</y>
+      <w>2100</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>*Contratti tra contesti*
+fg=#314359
+fontsize=19
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>20</x>
+      <y>792</y>
+      <w>1330</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>*Eventi di dominio pubblicati ai contesti interessati*
+Richieste → Trasporto   |   RichiestaApprovata(richiestaId, datiOperativi, pazienteId, convenzioneId?)
+Mezzi → Trasporto   |   MezzoIndisponibile / MezzoRipristinato(mezzoId, istante)
+Personale → Trasporto   |   TurnoPubblicato / TurnoAggiornato(turnoId, fascia, equipaggio)
+Trasporto → Amministrazione   |   TrasportoCompletato(trasportoId, convenzioneId?, esito)
+Mezzi → Amministrazione   |   SpesaRiparazioneRegistrata(mezzoId, interventoId, importo, documentoId)
+fg=#314359
+fontsize=14
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>1420</x>
+      <y>792</y>
+      <w>1370</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>*Consultazioni tra contesti e consegne operative*
+Trasporto consulta Mezzi per l’idoneità e Personale per turni, disponibilità e abilitazioni.
+Richieste consulta Amministrazione per riferimenti e validità delle convenzioni.
+Amministrazione acquisisce da Personale presenze, contratto e dati per la retribuzione.
+I soccorritori aggiornano Trasporto e Mezzi. Amministrazione riceve eventuali incassi e documenti.
+Se un mezzo impegnato diventa indisponibile il centralino valuta la riassegnazione.
+L’assegnazione avvisa l’equipaggio. Gli avanzamenti del servizio aggiornano il centralino.
+fg=#314359
+fontsize=14
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>320</x>
+      <y>1010</y>
+      <w>310</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>«aggregate root»
+*Mezzo*
+--
+mezzoId: MezzoId
+targa: Targa
+tipo: TipoMezzo
+stato: StatoOperativo
+odometro: Km
+--
+registraChecklist() / registraSanificazione()
+registraRifornimento() / aggiornaKm()
+sospendiDisponibilita() / ripristina()
+valutaIdoneita(requisiti, istante)
+fg=#216A57
+bg=#D7EFE5
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>50</x>
+      <y>1010</y>
+      <w>220</w>
+      <h>148</h>
+    </coordinates>
+    <panel_attributes>«repository»
+*Mezzi*
+--
+perId(mezzoId)
+elencaPerStato(stato)
+salva(mezzo)
+fg=#216A57
+bg=#FFFFFF
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>700</x>
+      <y>1010</y>
+      <w>200</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>«aggregate root»
+*SegnalazioneGuasto*
+--
+guastoId: GuastoId
+mezzoId: MezzoId
+autore: SoccorritoreId
+descrizione: Testo
+rilevatoIl: Istante
+stato: StatoGuasto
+--
+segnala() / prendiInCarico()
+valutaImpatto() / risolvi()
+fg=#216A57
+bg=#D7EFE5
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>50</x>
+      <y>1290</y>
+      <w>240</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>«entity»
+*Attrezzatura*
+--
+attrezzaturaId: AttrezzaturaId
+tipo: TipoPresidio
+stato: StatoPresidio
+scadenza: Data [0..1]
+anomalie: Testo [0..*]
+fg=#216A57
+bg=#FFFFFF
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>335</x>
+      <y>1290</y>
+      <w>280</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>«entity»
+*Checklist*
+--
+checklistId: ChecklistId
+eseguitaIl: Istante
+autore: SoccorritoreId
+controlli: EsitoControllo [1..*]
+esitoIdoneita: Esito
+fg=#216A57
+bg=#FFFFFF
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>660</x>
+      <y>1290</y>
+      <w>240</w>
+      <h>175</h>
+    </coordinates>
+    <panel_attributes>«aggregate root»
+*Manutenzione*
+--
+interventoId: InterventoId
+mezzoId: MezzoId
+guastoId: GuastoId [0..1]
+tipo: Manutenzione o Revisione
+scadenza: Data [0..1]
+costo: Importo [0..1]
+--
+pianifica() / registraEsecuzione()
+fg=#216A57
+bg=#D7EFE5
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>50</x>
+      <y>1500</y>
+      <w>250</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>«entity»
+*Sanificazione*
+--
+sanificazioneId: SanificazioneId
+eseguitaIl: Istante
+autore: SoccorritoreId
+esito: Esito
+fg=#216A57
+bg=#FFFFFF
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>350</x>
+      <y>1500</y>
+      <w>260</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>«entity»
+*Rifornimento*
+--
+rifornimentoId: RifornimentoId
+effettuatoIl: Istante
+autore: SoccorritoreId
+stazione: Testo
+importo: Importo
+odometro: Km
+fg=#216A57
+bg=#FFFFFF
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>660</x>
+      <y>1500</y>
+      <w>240</w>
+      <h>118</h>
+    </coordinates>
+    <panel_attributes>«value object»
+*EsitoControllo*
+--
+presidio: AttrezzaturaId [0..1]
+voce: Testo
+esito: Esito
+anomalia: Testo [0..1]
+fg=#216A57
+bg=#FFFFFF
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>50</x>
+      <y>1690</y>
+      <w>850</w>
+      <h>74</h>
+    </coordinates>
+    <panel_attributes>*Idoneità e guasti*
+I controlli registrano funzionalità e scadenze. Un guasto bloccante rende il mezzo indisponibile.
+L’autoparco verifica il ripristino e comunica esito e disponibilità al centralino.
+fg=#216A57
+bg=#ECF7F3
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>990</x>
+      <y>1010</y>
+      <w>280</w>
+      <h>192</h>
+    </coordinates>
+    <panel_attributes>«aggregate root»
+*Soccorritore*
+--
+soccorritoreId: SoccorritoreId
+anagrafica: DatiAnagrafici
+tipo: Dipendente o Volontario
+ruoli, qualifiche, abilitazioni
+disponibilita: Disponibilita [0..*]
+--
+aggiornaDati() / dichiaraDisponibilita()
+abilitatoPer(requisiti, fascia)
+fg=#855612
+bg=#F8E7C7
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1540</x>
+      <y>1010</y>
+      <w>280</w>
+      <h>192</h>
+    </coordinates>
+    <panel_attributes>«aggregate root»
+*Turno*
+--
+turnoId: TurnoId
+fascia: Intervallo
+fabbisogno: Ruolo [1..*]
+equipaggio: SoccorritoreId [0..*]
+stato: StatoTurno
+--
+assegna() / sostituisci()
+verificaCopertura() / pubblica()
+registraPresenza()
+fg=#855612
+bg=#F8E7C7
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>990</x>
+      <y>1270</y>
+      <w>250</w>
+      <h>146</h>
+    </coordinates>
+    <panel_attributes>«entity»
+*Certificazione*
+--
+certificazioneId: CertificazioneId
+corsoId: CorsoId [0..1]
+tipo: TipoAbilitazione
+scadenza: Data
+--
+validaAlla(data) / rinnova()
+fg=#855612
+bg=#FFFFFF
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1280</x>
+      <y>1270</y>
+      <w>240</w>
+      <h>146</h>
+    </coordinates>
+    <panel_attributes>«entity»
+*Contratto*
+--
+contrattoId: ContrattoId
+tipo: TipoRapporto
+validita: Intervallo
+retribuzione: Importo [0..1]
+--
+attivoAlla(data)
+fg=#855612
+bg=#FFFFFF
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1560</x>
+      <y>1270</y>
+      <w>260</w>
+      <h>146</h>
+    </coordinates>
+    <panel_attributes>«entity»
+*Presenza*
+--
+presenzaId: PresenzaId
+soccorritoreId: SoccorritoreId
+fasciaEffettiva: Intervallo
+esito: Presente o Assente
+fg=#855612
+bg=#FFFFFF
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>990</x>
+      <y>1480</y>
+      <w>250</w>
+      <h>154</h>
+    </coordinates>
+    <panel_attributes>«aggregate root»
+*CorsoFormazione*
+--
+corsoId: CorsoId
+abilitazione: TipoAbilitazione
+data: Data
+partecipanti: SoccorritoreId [0..*]
+--
+programma() / comunica()
+fg=#855612
+bg=#F8E7C7
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1280</x>
+      <y>1480</y>
+      <w>240</w>
+      <h>154</h>
+    </coordinates>
+    <panel_attributes>«value object»
+*Disponibilita*
+--
+fascia: Intervallo
+esito: Disponibile o Indisponibile
+motivo: Assenza o Permesso [0..1]
+fg=#855612
+bg=#FFFFFF
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1560</x>
+      <y>1480</y>
+      <w>260</w>
+      <h>154</h>
+    </coordinates>
+    <panel_attributes>«repository»
+*Turni*
+--
+perId(turnoId)
+pubblicati(fascia)
+scoperti(fascia)
+salva(turno)
+fg=#855612
+bg=#FFFFFF
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>990</x>
+      <y>1690</y>
+      <w>830</w>
+      <h>74</h>
+    </coordinates>
+    <panel_attributes>*Copertura e abilitazioni*
+I turni scoperti richiedono copertura. Il calendario pubblicato e le modifiche arrivano al centralino.
+Disponibilità, assenze e certificazioni valide determinano l’impiego. Il personale riceve avvisi di scadenza.
+fg=#855612
+bg=#FDF5E7
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1910</x>
+      <y>1010</y>
+      <w>300</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>«aggregate root»
+*PraticaTrasporto*
+--
+praticaId: PraticaId
+trasportoId: TrasportoId
+convenzioneId: ConvenzioneId [0..1]
+stato: StatoPratica
+documenti: DocumentazioneServizio [0..1]
+incassi: Incasso [0..*]
+--
+riceviConsegna() / verifica()
+contabilizza() / chiudi()
+fg=#8D3D58
+bg=#F5DDE6
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2300</x>
+      <y>1010</y>
+      <w>220</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>«aggregate root»
+*Convenzione*
+--
+convenzioneId: ConvenzioneId
+strutturaId: StrutturaId
+validita: Intervallo
+regole: CondizioniConvenzione
+--
+aggiornaCondizioni()
+validaAlla(dataServizio)
+fornisciRegoleRendiconto()
+fg=#8D3D58
+bg=#F5DDE6
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2600</x>
+      <y>1010</y>
+      <w>160</w>
+      <h>148</h>
+    </coordinates>
+    <panel_attributes>«aggregate root»
+*StrutturaOspedaliera*
+--
+strutturaId: StrutturaId
+denominazione: Testo
+recapito: Contatto
+--
+aggiornaDati()
+fg=#8D3D58
+bg=#F5DDE6
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1910</x>
+      <y>1280</y>
+      <w>270</w>
+      <h>154</h>
+    </coordinates>
+    <panel_attributes>«value object»
+*DocumentazioneServizio*
+--
+impegnativa: DocumentoId [0..1]
+allegati: DocumentoId [0..*]
+consegnataIl: Istante
+esitoVerifica: Esito [0..1]
+fg=#8D3D58
+bg=#FFFFFF
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2220</x>
+      <y>1280</y>
+      <w>230</w>
+      <h>154</h>
+    </coordinates>
+    <panel_attributes>«entity»
+*Incasso*
+--
+incassoId: IncassoId
+importo: Importo
+ricevutoIl: Istante
+stato: StatoContabile
+--
+riconcilia()
+fg=#8D3D58
+bg=#FFFFFF
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2500</x>
+      <y>1280</y>
+      <w>260</w>
+      <h>154</h>
+    </coordinates>
+    <panel_attributes>«value object»
+*CondizioniConvenzione*
+--
+tariffePerServizio: Tariffa [1..*]
+regoleRendiconto: Regola [1..*]
+documenti: TipoDocumento [0..*]
+fg=#8D3D58
+bg=#FFFFFF
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1910</x>
+      <y>1480</y>
+      <w>265</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>«aggregate root»
+*Fattura*
+--
+fatturaId: FatturaId
+pratiche: PraticaId [0..*]
+spese: SpesaId [0..*]
+intestatario: RiferimentoContabile
+importo: Importo
+--
+predisponi() / emetti()
+fg=#8D3D58
+bg=#F5DDE6
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2220</x>
+      <y>1480</y>
+      <w>270</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>«domain service»
+*RendicontazioneServizi*
+--
+determinaImporto(pratica, convenzione)
+generaRendiconto(periodo, struttura)
+elaboraRiepilogo(periodo)
+--
+Applica le regole alla data del servizio.
+fg=#8D3D58
+bg=#FFFFFF
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2530</x>
+      <y>1480</y>
+      <w>230</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>«aggregate root»
+*Spesa*
+--
+spesaId: SpesaId
+tipo: TipoSpesa
+Riparazione, rimborso, indennità
+origineId: Riferimento
+documentoId: DocumentoId [0..1]
+importo: Importo
+--
+registra() / contabilizza()
+fg=#8D3D58
+bg=#F5DDE6
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1910</x>
+      <y>1660</y>
+      <w>290</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>«aggregate root»
+*LiquidazioneStipendio*
+--
+liquidazioneId: LiquidazioneId
+soccorritoreId, periodo, importo, stato
+--
+calcola(presenze, contratto) / paga()
+fg=#8D3D58
+bg=#F5DDE6
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>2240</x>
+      <y>1680</y>
+      <w>520</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>*Verifica e chiusura della pratica*
+Una pratica per trasporto completato. Si verifica la documentazione,
+si riconciliano gli eventuali incassi e si completano gli adempimenti dovuti.
+fg=#8D3D58
+bg=#FBEFF3
+layer=2</panel_attributes>
+    <additional_attributes />
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>315</x>
+      <y>240</y>
+      <w>115</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-
+fg=#53667D
+fontsize=12
+layer=1
+m1=0..*
+m2=1</panel_attributes>
+    <additional_attributes>20.0;20.0;95.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>135</x>
+      <y>360</y>
+      <w>40</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+fg=#53667D
+fontsize=12
+layer=1
+m1=1
+m2=1</panel_attributes>
+    <additional_attributes>20.0;20.0;20.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>315</x>
+      <y>345</y>
+      <w>220</w>
+      <h>125</h>
+    </coordinates>
+    <panel_attributes>lt=..&gt;
+fg=#53667D
+fontsize=12
+layer=1</panel_attributes>
+    <additional_attributes>200.0;105.0;200.0;20.0;20.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>960</x>
+      <y>235</y>
+      <w>250</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-
+fg=#53667D
+fontsize=12
+layer=1
+m1=1
+m2=0..*
+pazienteId</panel_attributes>
+    <additional_attributes>20.0;20.0;230.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1535</x>
+      <y>235</y>
+      <w>225</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=..&gt;
+fg=#53667D
+fontsize=12
+layer=1
+verifica / assegna</panel_attributes>
+    <additional_attributes>205.0;20.0;20.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1240</x>
+      <y>386</y>
+      <w>40</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+fg=#53667D
+fontsize=12
+layer=1
+m1=1
+m2=1</panel_attributes>
+    <additional_attributes>20.0;20.0;20.0;84.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1495</x>
+      <y>386</y>
+      <w>40</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+fg=#53667D
+fontsize=12
+layer=1
+m1=1
+m2=0..1</panel_attributes>
+    <additional_attributes>20.0;20.0;20.0;84.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1535</x>
+      <y>365</y>
+      <w>390</w>
+      <h>125</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+fg=#53667D
+fontsize=12
+layer=1
+m1=1
+m2=0..1</panel_attributes>
+    <additional_attributes>20.0;20.0;370.0;20.0;370.0;105.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>960</x>
+      <y>330</y>
+      <w>250</w>
+      <h>155</h>
+    </coordinates>
+    <panel_attributes>lt=..&gt;
+fg=#53667D
+fontsize=12
+layer=1</panel_attributes>
+    <additional_attributes>20.0;135.0;60.0;135.0;60.0;20.0;230.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>250</x>
+      <y>1062</y>
+      <w>90</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=..&gt;
+fg=#53667D
+fontsize=12
+layer=1</panel_attributes>
+    <additional_attributes>20.0;20.0;70.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>610</x>
+      <y>1082</y>
+      <w>110</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-
+fg=#53667D
+fontsize=12
+layer=1
+m1=1
+m2=0..*</panel_attributes>
+    <additional_attributes>20.0;20.0;90.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>760</x>
+      <y>1200</y>
+      <w>40</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=-
+fg=#53667D
+fontsize=12
+layer=1
+m1=0..1
+m2=0..*</panel_attributes>
+    <additional_attributes>20.0;20.0;20.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>150</x>
+      <y>1200</y>
+      <w>230</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+fg=#53667D
+fontsize=12
+layer=1
+m1=1
+m2=0..*</panel_attributes>
+    <additional_attributes>210.0;20.0;210.0;40.0;20.0;40.0;20.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>455</x>
+      <y>1200</y>
+      <w>40</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+fg=#53667D
+fontsize=12
+layer=1
+m1=1
+m2=0..*</panel_attributes>
+    <additional_attributes>20.0;20.0;20.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>15</x>
+      <y>1170</y>
+      <w>325</w>
+      <h>350</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+fg=#53667D
+fontsize=12
+layer=1
+m1=1
+m2=0..*</panel_attributes>
+    <additional_attributes>305.0;20.0;20.0;20.0;20.0;300.0;55.0;300.0;55.0;330.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>290</x>
+      <y>1190</y>
+      <w>220</w>
+      <h>330</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+fg=#53667D
+fontsize=12
+layer=1
+m1=1
+m2=0..*</panel_attributes>
+    <additional_attributes>30.0;20.0;20.0;20.0;20.0;280.0;200.0;280.0;200.0;310.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>595</x>
+      <y>1380</y>
+      <w>105</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+fg=#53667D
+fontsize=12
+layer=1
+m1=1
+m2=1..*</panel_attributes>
+    <additional_attributes>20.0;20.0;40.0;20.0;40.0;90.0;85.0;90.0;85.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1250</x>
+      <y>1075</y>
+      <w>310</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-
+fg=#53667D
+fontsize=12
+layer=1
+m1=0..*
+m2=0..*
+membri equipaggio per ID</panel_attributes>
+    <additional_attributes>20.0;20.0;290.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1095</x>
+      <y>1182</y>
+      <w>40</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+fg=#53667D
+fontsize=12
+layer=1
+m1=1
+m2=0..*</panel_attributes>
+    <additional_attributes>20.0;20.0;20.0;88.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1245</x>
+      <y>1182</y>
+      <w>175</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+fg=#53667D
+fontsize=12
+layer=1
+m1=1
+m2=0..*</panel_attributes>
+    <additional_attributes>20.0;20.0;20.0;48.0;155.0;48.0;155.0;88.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1225</x>
+      <y>1182</y>
+      <w>195</w>
+      <h>318</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+fg=#53667D
+fontsize=12
+layer=1
+m1=1
+m2=0..*</panel_attributes>
+    <additional_attributes>20.0;20.0;20.0;268.0;175.0;268.0;175.0;298.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1670</x>
+      <y>1182</y>
+      <w>40</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+fg=#53667D
+fontsize=12
+layer=1
+m1=1
+m2=0..*</panel_attributes>
+    <additional_attributes>20.0;20.0;20.0;88.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1095</x>
+      <y>1396</y>
+      <w>40</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>lt=-
+fg=#53667D
+fontsize=12
+layer=1
+m1=0..*
+m2=0..1</panel_attributes>
+    <additional_attributes>20.0;20.0;20.0;84.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1800</x>
+      <y>1135</y>
+      <w>55</w>
+      <h>445</h>
+    </coordinates>
+    <panel_attributes>lt=..&gt;
+fg=#53667D
+fontsize=12
+layer=1</panel_attributes>
+    <additional_attributes>20.0;425.0;35.0;425.0;35.0;20.0;20.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2190</x>
+      <y>1075</y>
+      <w>130</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-
+fg=#53667D
+fontsize=12
+layer=1
+m1=0..*
+m2=0..1</panel_attributes>
+    <additional_attributes>20.0;20.0;110.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2500</x>
+      <y>1070</y>
+      <w>120</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-
+fg=#53667D
+fontsize=12
+layer=1
+m1=0..*
+m2=1</panel_attributes>
+    <additional_attributes>20.0;20.0;100.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2025</x>
+      <y>1190</y>
+      <w>40</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+fg=#53667D
+fontsize=12
+layer=1
+m1=1
+m2=0..1</panel_attributes>
+    <additional_attributes>20.0;20.0;20.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2160</x>
+      <y>1190</y>
+      <w>195</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+fg=#53667D
+fontsize=12
+layer=1
+m1=1
+m2=0..*</panel_attributes>
+    <additional_attributes>20.0;20.0;20.0;50.0;175.0;50.0;175.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2490</x>
+      <y>1190</y>
+      <w>160</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+fg=#53667D
+fontsize=12
+layer=1
+m1=1
+m2=1</panel_attributes>
+    <additional_attributes>20.0;20.0;20.0;50.0;140.0;50.0;140.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2155</x>
+      <y>1525</y>
+      <w>85</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=..&gt;
+fg=#53667D
+fontsize=12
+layer=1</panel_attributes>
+    <additional_attributes>65.0;20.0;20.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1875</x>
+      <y>1135</y>
+      <w>55</w>
+      <h>450</h>
+    </coordinates>
+    <panel_attributes>lt=..&gt;
+fg=#53667D
+fontsize=12
+layer=1</panel_attributes>
+    <additional_attributes>35.0;430.0;20.0;430.0;20.0;20.0;35.0;20.0</additional_attributes>
+  </element>
+</diagram>
