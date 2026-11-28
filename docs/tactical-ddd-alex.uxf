@@ -1,0 +1,864 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>7</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>14</x>
+      <y>28</y>
+      <w>147</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>«repository»
+*RichiesteTrasporto*
+--
+perId(richiestaId)
+daEsaminare()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>154</x>
+      <y>70</y>
+      <w>91</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;..</panel_attributes>
+    <additional_attributes>110.0;110.0;50.0;110.0;50.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>231</x>
+      <y>126</y>
+      <w>168</w>
+      <h>154</h>
+    </coordinates>
+    <panel_attributes>«aggregate root»
+*RichiestaTrasporto*
+--
+id: int
+nomeRichiedente: testo
+nomePaziente, cognomePaziente,
+    codiceFiscalePaziente: testo
+convenzione: Convenzione [0..1]
+dettagli: DatiRichiesta
+stato: StatoRichiesta
+--
+ricevi()
+approva(centralinistaId)
+rifiuta(centralinistaId, motivo)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>231</x>
+      <y>329</y>
+      <w>168</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Enumeration&gt;&gt;
+&lt;&lt;Value Object&gt;&gt;
+*StatoRichiesta*
+--
+DA_VERIFICARE
+APPROVATA
+RIFIUTATA</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>308</x>
+      <y>273</y>
+      <w>42</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+stato
+
+</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>14</x>
+      <y>154</y>
+      <w>147</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>«aggregate root»
+*Richiedente*
+--
+id: int
+nome: testo
+telefono: testo
+email: testo
+indirizzo: testo
+descrizione: testo
+--
+aggiungiNuovo()
+aggiornaRecapito()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>14</x>
+      <y>329</y>
+      <w>161</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>«value object»
+*DatiRichiesta*
+--
+prelievo, destinazione: testo
+giorno: data
+ora: orario
+tipoMezzo: testo
+note: Testo</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>168</x>
+      <y>245</y>
+      <w>77</w>
+      <h>147</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=1
+m2=1</panel_attributes>
+    <additional_attributes>90.0;10.0;40.0;10.0;40.0;180.0;10.0;180.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>154</x>
+      <y>189</y>
+      <w>91</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=0..*</panel_attributes>
+    <additional_attributes>10.0;10.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>0</x>
+      <y>0</y>
+      <w>875</w>
+      <h>434</h>
+    </coordinates>
+    <panel_attributes>*Trasporto*
+--
+fg=#b6d7a8
+bg=#e6f3e1
+layer=-1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>0</x>
+      <y>448</y>
+      <w>616</w>
+      <h>336</h>
+    </coordinates>
+    <panel_attributes>*Personale*
+--
+fg=#a2c4c9
+bg=#e6f0f2
+layer=-1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>420</x>
+      <y>476</y>
+      <w>175</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>«aggregate root»
+*Personale*
+--
+matricola: String
+nome, cognome: String
+ruolo: Ruolo
+certificazioni: Certificazioni [0..*]
+--
+aggiornaDati() / dichiaraDisponibilita()
+abilitatoPer(requisiti, fascia)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>14</x>
+      <y>476</y>
+      <w>168</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Enumeration&gt;&gt;
+&lt;&lt;Value Object&gt;&gt;
+*Ruolo*
+--
+AUTISTA
+MILITE
+AGGREGATO
+CENTRALINISTA
+IMPIEGATO
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>175</x>
+      <y>560</y>
+      <w>259</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+ruolo</panel_attributes>
+    <additional_attributes>10.0;20.0;350.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>420</x>
+      <y>693</y>
+      <w>182</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>«entity»
+*Certificazione*
+--
+nome: String
+data, scadenza: TimeStamp
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>497</x>
+      <y>609</y>
+      <w>35</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=1
+m2=0..*</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>630</x>
+      <y>448</y>
+      <w>763</w>
+      <h>336</h>
+    </coordinates>
+    <panel_attributes>*Mezzo*
+--
+fg=#ffe599
+bg=#fff6dd
+layer=-1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>889</x>
+      <y>0</y>
+      <w>504</w>
+      <h>434</h>
+    </coordinates>
+    <panel_attributes>*Amministrazione*
+--
+fg=#f9cb9c
+bg=#fef1e6
+layer=-1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>497</x>
+      <y>126</y>
+      <w>210</w>
+      <h>203</h>
+    </coordinates>
+    <panel_attributes>«value object»
+*SchedaTrasporto*
+--
+id: int
+richiesta: RichiestaTrasporto
+paziente: Paziente
+note: testo
+mezzo: Mezzo
+equipaggio: Personale [2..*]
+sosta: int
+documentazione: DocumentazioneServizio
+incasso: Incasso
+--
+creaNuova()
+approva()
+rifiuta()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>392</x>
+      <y>189</y>
+      <w>119</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=0..*
+richiesta</panel_attributes>
+    <additional_attributes>10.0;20.0;150.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>497</x>
+      <y>28</y>
+      <w>182</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>«aggregate root»
+*Paziente*
+--
+id: int
+nome, cognome, codiceFiscale: testo
+--
+registra()
+aggiornaAnagrafica()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>231</x>
+      <y>28</y>
+      <w>168</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>«repository»
+*Pazienti*
+--
+perId(pazienteId)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>392</x>
+      <y>49</y>
+      <w>119</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>150.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>448</x>
+      <y>77</y>
+      <w>63</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=0..*
+paziente</panel_attributes>
+    <additional_attributes>70.0;10.0;10.0;10.0;10.0;110.0;70.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>644</x>
+      <y>476</y>
+      <w>168</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>«aggregate root»
+*Mezzo*
+--
+id: int
+targa: testo
+modello: testo
+--
+registra()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>847</x>
+      <y>483</y>
+      <w>168</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>«repository»
+*Mezzi*
+--
+perId(mezzoId)
+perTarga(mezzoId)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>805</x>
+      <y>504</y>
+      <w>56</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;60.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>658</x>
+      <y>322</y>
+      <w>49</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=0..*
+mezzo</panel_attributes>
+    <additional_attributes>10.0;220.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>217</x>
+      <y>476</y>
+      <w>168</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>«repository»
+*Organico*
+--
+perId(mezzoId)
+perTarga(mezzoId)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>294</x>
+      <y>525</y>
+      <w>140</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>180.0;30.0;10.0;30.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>525</x>
+      <y>322</y>
+      <w>70</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=2..*
+m2=0..*
+equipaggio</panel_attributes>
+    <additional_attributes>10.0;220.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>700</x>
+      <y>91</y>
+      <w>77</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;120.0;90.0;120.0;90.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>693</x>
+      <y>42</y>
+      <w>168</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>«repository»
+*SchedeTrasporto*
+--
+perId(schedaId)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>217</x>
+      <y>616</y>
+      <w>175</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>«aggregate root»
+*Turno*
+--
+turnoId: TurnoId
+nome: testo
+inizio, fine: orario
+personale: Personale [0..*]
+stato: StatoTurno
+--
+assegna() / sostituisci()
+verificaCopertura() / pubblica()
+registraPresenza()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>14</x>
+      <y>665</y>
+      <w>168</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>«repository»
+*Turni*
+--
+perId(turnoId)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>175</x>
+      <y>686</y>
+      <w>56</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>60.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>385</x>
+      <y>609</y>
+      <w>91</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..n
+m2=0..n</panel_attributes>
+    <additional_attributes>10.0;80.0;90.0;80.0;90.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>644</x>
+      <y>651</y>
+      <w>168</w>
+      <h>119</h>
+    </coordinates>
+    <panel_attributes>«entity»
+*Attrezzatura*
+--
+id: int
+tipo: testo
+stato: testo
+scadenza: data
+note: testo
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>833</x>
+      <y>651</y>
+      <w>168</w>
+      <h>119</h>
+    </coordinates>
+    <panel_attributes>«entity»
+*Sanificazione*
+--
+id: int
+nome: testo
+soccorritore: Personale [1..*]
+esito: testo
+data: data
+note: testo</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1211</x>
+      <y>651</y>
+      <w>168</w>
+      <h>119</h>
+    </coordinates>
+    <panel_attributes>«entity»
+*Checklist*
+--
+id: int
+soccorritore: Personale [1..*]
+data: data
+esito: testo
+note: testo</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1022</x>
+      <y>651</y>
+      <w>168</w>
+      <h>119</h>
+    </coordinates>
+    <panel_attributes>«entity»
+*Rifornimento*
+--
+id: int
+soccorritore: Personale [1..*]
+stazione: testo
+kmMezzo: int
+importo: int
+data: data
+note: testo</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>665</x>
+      <y>553</y>
+      <w>35</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=1
+m2=0..*</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>693</x>
+      <y>553</y>
+      <w>252</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=1
+m2=0..*</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0;320.0;120.0;320.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>742</x>
+      <y>553</y>
+      <w>399</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=1
+m2=0..*</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0;530.0;120.0;530.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>798</x>
+      <y>553</y>
+      <w>525</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=1
+m2=0..*</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0;710.0;120.0;710.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1197</x>
+      <y>476</y>
+      <w>168</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>«aggregate root»
+*SegnalazioneGuasto*
+--
+id: int
+soccorritore: Personale [1..*]
+data: data
+note: testo
+--
+segnala()
+prendiInCarico()
+valutaImpatto()
+risolvi()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>805</x>
+      <y>539</y>
+      <w>406</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=0..*</panel_attributes>
+    <additional_attributes>10.0;10.0;560.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>917</x>
+      <y>301</y>
+      <w>168</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>«aggregate root»
+*Convenzione*
+--
+id: int
+struttura: Struttura
+inizio, fine: data
+note: testo
+--
+aggiornaCondizioni()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1176</x>
+      <y>301</y>
+      <w>168</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>«aggregate root»
+*StrutturaOspedaliera*
+--
+id: int
+nome: testo
+indirizzo: testo
+--
+aggiornaDati()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1078</x>
+      <y>336</y>
+      <w>112</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=0..*
+struttura</panel_attributes>
+    <additional_attributes>140.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>392</x>
+      <y>245</y>
+      <w>539</w>
+      <h>154</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=0..*
+convenzione</panel_attributes>
+    <additional_attributes>10.0;10.0;80.0;10.0;80.0;190.0;750.0;190.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>917</x>
+      <y>70</y>
+      <w>168</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>«value object»
+*DocumentazioneServizio*
+--
+allegati: DocumentoId [0..*]
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>700</x>
+      <y>119</y>
+      <w>231</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=0..*
+documentazione</panel_attributes>
+    <additional_attributes>10.0;150.0;60.0;150.0;230.0;10.0;310.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>917</x>
+      <y>154</y>
+      <w>168</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>«entity»
+*Incasso*
+--
+id: IncassoId
+importo: Importo
+data: data
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>700</x>
+      <y>196</y>
+      <w>231</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1
+incasso</panel_attributes>
+    <additional_attributes>10.0;150.0;60.0;150.0;230.0;10.0;310.0;10.0</additional_attributes>
+  </element>
+</diagram>
